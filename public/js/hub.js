@@ -24,8 +24,14 @@ hub.view = function(ctrl) {
   ]);
 };
 
+
+world.load = function(url){
+  return m.request({method: 'GET', url: url})
+}
+
 world.controller = function(){
   this.id = m.route.param('worldID');
+  this.data = world.load('/api/world/' + this.id);
 
 }
 
