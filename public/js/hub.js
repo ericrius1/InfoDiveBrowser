@@ -10,6 +10,9 @@ hub.load = function() {
 
 hub.controller = function() {
   this.worlds = hub.load()
+  this.worlds.then(function(){
+    m.render(document.body, hub.view(hub.controller))
+  })
 }
 
 hub.view = function(ctrl) {
@@ -36,7 +39,7 @@ world.controller = function(){
 }
 
 world.view = function(ctrl){
-  return m('div', ctrl.id);
+  return m('div', 'ahhhh');
 }
 
 m.route.mode = "hash"
@@ -46,7 +49,5 @@ m.route(document.body, '/', {
 });
 
 
-
-
-
-m.module(document.body, hub);
+m.render(document.body, world.view(world.controller));
+//so if we go straight to world via link it renders properly!
