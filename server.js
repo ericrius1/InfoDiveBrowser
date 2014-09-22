@@ -8,8 +8,8 @@ var mongojs = require('mongojs');
 var port = process.env.PORT || 8080
 app.use(express.static(__dirname + '/public'));
 
-// var uri = 'mongodb://heroku_app29862006:72o7v0fsmoaro2ra30grr8n57n@ds039000.mongolab.com:39000/heroku_app29862006';
-var uri = 'infodive';
+var uri = 'mongodb://heroku_app29862006:72o7v0fsmoaro2ra30grr8n57n@ds039000.mongolab.com:39000/heroku_app29862006';
+// var uri = 'infodive';
 var seedData = [{
   num: Math.random()
 }]
