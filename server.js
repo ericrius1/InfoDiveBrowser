@@ -8,14 +8,10 @@ var mongojs = require('mongojs');
 var port = process.env.PORT || 8080
 app.use(express.static(__dirname + '/public'));
 
-var uri = 'mongodb://heroku_app29862006:72o7v0fsmoaro2ra30grr8n57n@ds039000.mongolab.com:39000/heroku_app29862006';
-// var uri = 'infodive';
+// var uri = 'mongodb://heroku_app29862006:72o7v0fsmoaro2ra30grr8n57n@ds039000.mongolab.com:39000/heroku_app29862006';
+var uri = 'infodive';
 var seedData = [{
-  vertex: {
-    x: 0,
-    y: 1,
-    z: 0
-  }
+  num: Math.random()
 }]
 var db = mongojs.connect(uri);
 db.createCollection('worlds');
@@ -25,7 +21,8 @@ worlds.insert(seedData[0], function(err, result) {
 });
 
 
-
+//routes
+require('./app/routes')(app, db);
 
 
 
