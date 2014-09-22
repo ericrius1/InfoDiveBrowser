@@ -1,6 +1,22 @@
 var hub = {}
 var world = {}
 
+var mContainer = document.getElementById('mContainer');
+
+
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000)
+var renderer = new THREE.WebGLRenderer()
+renderer.setSize(window.innerWidth, window.innerHeight);
+glContainer.appendChild(renderer.domElement);
+
+animate()
+
+function animate(){
+  window.requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
 hub.load = function() {
   return m.request({
     method: 'GET',
@@ -11,12 +27,12 @@ hub.load = function() {
 hub.controller = function() {
   this.worlds = hub.load()
   this.worlds.then(function(){
-    m.render(document.body, hub.view(hub.controller))
+    m.render(mContainer, hub.view(hub.controller))
   })
 }
 
 hub.view = function(ctrl) {
-  return m(".worlds", [
+  return m(".world-list", [
     ctrl.worlds().map(function(world, index) {
 
       var element = "a[href='/world/" + world._id + "']";
@@ -39,15 +55,15 @@ world.controller = function(){
 }
 
 world.view = function(ctrl){
-  return m('div', 'ahhhh');
+
 }
 
 m.route.mode = "hash"
-m.route(document.body, '/', {
+m.route(mContainer, '/', {
   "/": hub,
   "/world/:worldID": world
 });
 
 
-m.render(document.body, world.view(world.controller));
+m.render(mContainer, world.view(world.controller));
 //so if we go straight to world via link it renders properly!
