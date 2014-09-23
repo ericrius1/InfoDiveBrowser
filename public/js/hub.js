@@ -47,6 +47,9 @@ world.load = function(url) {
 world.controller = function() {
   this.id = m.route.param('worldID');
   this.data = world.load('/api/world/' + this.id);
+  this.data.then(function(data){
+    G.createScene(data.data);
+  });
 
 }
 

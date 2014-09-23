@@ -32,9 +32,11 @@ G.onResize = function(){
 
 }
 
-G.createScene = function(){
+G.createScene = function(data){
+  console.log("DATA", data)
   var sphere = new THREE.Mesh(new THREE.SphereGeometry(10, 16));
   G.scene.add(sphere);
+  sphere.scale.multiplyScalar(10 * data);
 }
 
 window.addEventListener('resize', G.onResize.bind(G), false);
