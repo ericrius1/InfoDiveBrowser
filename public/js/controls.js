@@ -24,11 +24,11 @@ var Controls = function() {
 
         G.fpsControls.enabled = true;
         if(!pLockEnabled){
-          // $('#cursor').addClass('active')
-          // $(document).on('mousedown', mouseDown);
-          // $(document).on('mouseup', mouseRelease);
+          $('#cursor').addClass('active')
+          $(document).on('mousedown', mouseDown);
+          $(document).on('mouseup', mouseRelease);
 
-          // $(document).on('keydown', keyPressed);
+          $(document).on('keydown', keyPressed);
           pLockEnabled = true
         }
 
@@ -38,11 +38,11 @@ var Controls = function() {
       } else {
         pLockEnabled = false;
         G.fpsControls.enabled = false;
-        // $('#cursor').removeClass('active')
-        // $(document).off('mousedown');
-        // $(document).off('mouseup');
+        $('#cursor').removeClass('active')
+        $(document).off('mousedown');
+        $(document).off('mouseup');
 
-        // $(document).off('keydown');
+        $(document).off('keydown');
 
 
       }
@@ -104,32 +104,32 @@ var Controls = function() {
   }
 
 
-  // function mouseDown() {
-  //   activePrimitive.spawn();
-  //   $('#cursor').addClass('held');
-  //   timeoutId = setInterval(function(){
-  //     activePrimitive.spawn();
-  //   }, activePrimitive._spawnInterval);
+  function mouseDown() {
+    // activePrimitive.spawn();
+    $('#cursor').addClass('held');
+    // timeoutId = setInterval(function(){
+    //   activePrimitive.spawn();
+    // }, activePrimitive._spawnInterval);
 
-  // }
+  }
 
-  // function mouseRelease() {
-  //   $('#cursor').removeClass('held');
-  //   window.clearInterval(timeoutId)
-  //   activePrimitive.unspawn();
-  // }
+  function mouseRelease() {
+    $('#cursor').removeClass('held');
+    // window.clearInterval(timeoutId)
+    // activePrimitive.unspawn();
+  }
 
-  // function keyPressed(event) {
-  //   if (event.keyCode in G.primitives) {
-  //     _.each(G.primitives, function(primitive){
-  //       primitive.constructor.$menuItem.removeClass('active')
-  //     })
+  function keyPressed(event) {
+    // if (event.keyCode in G.primitives) {
+    //   _.each(G.primitives, function(primitive){
+    //     primitive.constructor.$menuItem.removeClass('active')
+    //   })
 
-  //     activePrimitive = G.primitives[event.keyCode];
-  //     activePrimitive.constructor.$menuItem.addClass('active');
+    //   activePrimitive = G.primitives[event.keyCode];
+    //   activePrimitive.constructor.$menuItem.addClass('active');
 
-  //    }
-  // };
+    //  }
+  };
 
 
 }
