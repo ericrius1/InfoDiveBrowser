@@ -3,8 +3,26 @@ body{
   overflow: hidden;
 }
 
-.world-list{
+a:link { color: white; }
+
+a:visited { color: red; }
+
+a:hover { /* styles for hover link */ }
+
+a:active { /* styles for active link */ }
+
+
+.hub{
   position: absolute;
   top: 2px;
   left: 2px;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.new{
+  position: absolute;
+  top: 20%;
+  left: 50%;
 }
