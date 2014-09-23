@@ -1,6 +1,7 @@
 G.initialize = function() {
   G.w = window.innerWidth;
   G.h = window.innerHeight;
+  G.playerHeight = 10;
   G.glContainer = document.getElementById('glContainer');
   G.scene = new THREE.Scene();
   G.camera = new THREE.PerspectiveCamera(45, this.w / this.h, 1, 20000)
@@ -8,8 +9,11 @@ G.initialize = function() {
   G.renderer = new THREE.WebGLRenderer()
   G.renderer.setSize(G.w, G.h);
   G.glContainer.appendChild(G.renderer.domElement);
-  var sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 16));
-  G.scene.add(sphere);
+
+
+  G._distanceFromPlayer = 200;
+  G._fakeObj = new THREE.Object3D();
+
 
   // sphere.scale.multiplyScalar(5 * data);
 
@@ -68,13 +72,45 @@ G.onResize = function() {
 
 }
 
-G.createScene = function(data) {
-  console.log("DATA", data);
-  var sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 16));
+G.spawnSphere = function(){
+
+  var direction = G.fpsControls.getDirection();
+  this._fakeObj.position.copy(G.controlObject.position)
+  this._fakeObj.translateX(direction.x * this._distanceFromPlayer)
+  this._fakeObj.translateY(direction.y * this._distanceFromPlayer);
+  this._fakeObj.translateZ(direction.z * this._distanceFromPlayer)
+  var sphere = this.createSphere(this._fakeObj.position);
+  G.data.primitives.push({
+    type: 'sphere',
+    position: sphere.position.clone()
+  })
+
+}
+
+G.createSphere = function(position) {
+  var sphere = new THREE.Mesh(new THREE.SphereGeometry(20, 16, 16));
+  sphere.position.copy(position);
   G.scene.add(sphere);
-  sphere.position.z = -100
-  sphere.scale.multiplyScalar(5 * data);
+  return sphere;
+}
+
+G.saveScene = function(){
+  console.log(G.data.primitives);
+
+}
+
+
+G.createScene = function(data) {
+
+  G.data = data;
+  //Go through our primitives and recreate them from json data
+  _.each(data.primitives, function(primitive){
+    if(primitive.type === 'sphere'){
+      G.createSphere(primitive.position)
+    }
+  })
   G.controls = new Controls(G.camera);
+
   animate()
 }
 

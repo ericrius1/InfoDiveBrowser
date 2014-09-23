@@ -23,8 +23,15 @@ a:active { /* styles for active link */ }
 
 .new{
   position: absolute;
-  top: 20%;
-  left: 50%;
+  top: 10%;
+  left: 90%;
+}
+
+.save{
+  position: absolute;
+  top: 10%;
+  left: 90%;
+
 }
 
 #cursor{
@@ -43,3 +50,5 @@ a:active { /* styles for active link */ }
 #cursor.held{
   border-color: #f00;
 }
+
+

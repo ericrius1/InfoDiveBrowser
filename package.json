@@ -6,6 +6,7 @@
       "express" : "~4.9.4",
     "mongodb" : "1.4.12",
     "mongojs": "0.14.1",
+    "three":  "0.68.0",
     "body-parser" : "~1.4.2",
     "method-override" : "~2.0.2"      
     }

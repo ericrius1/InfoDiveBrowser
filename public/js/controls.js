@@ -107,6 +107,7 @@ var Controls = function() {
   function mouseDown() {
     // activePrimitive.spawn();
     $('#cursor').addClass('held');
+    G.spawnSphere();
     // timeoutId = setInterval(function(){
     //   activePrimitive.spawn();
     // }, activePrimitive._spawnInterval);

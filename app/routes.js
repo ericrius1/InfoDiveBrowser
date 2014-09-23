@@ -16,13 +16,19 @@ module.exports = function(app, db) {
   app.get('/api/world/:worldID', function(req, res){
     var worlds = db.collection('worlds');
 
-    console.log("PARAMS ID",req.params.worldID);
     worlds.findOne({
       _id:mongojs.ObjectId(req.params.worldID)
     }, function(err, world){
-      console.log(world)
       res.json(world);
     });
   });
+
+  app.put('api/world/:worldID', function(req, res){
+    worlds.findOne({
+      _id: mongojs.ObjectId(req.params.worldID)
+    }, function(err, world){
+      console.log('yar!!')
+    })
+  })
 
 }

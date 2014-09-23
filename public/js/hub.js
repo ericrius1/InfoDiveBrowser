@@ -15,7 +15,7 @@ hub.load = function() {
 hub.controller = function() {
   this.worlds = hub.load()
   this.worlds.then(function() {
-    m.render(mContainer, hub.view(hub.controller))
+    // m.render(mContainer, hub.view(hub.controller))
   })
 }
 
@@ -32,7 +32,7 @@ hub.view = function(ctrl) {
         ])
       })
     ]),
-    m('.new', "new")
+    m('button[class="new"]', "New")
   ]);
 };
 
@@ -48,12 +48,17 @@ world.controller = function() {
   this.id = m.route.param('worldID');
   this.data = world.load('/api/world/' + this.id);
   this.data.then(function(data){
-    G.createScene(data.data);
+    G.createScene(data);
   });
+  this.save = function(){
+    G.saveScene();
+  }
 
 }
 
 world.view = function(ctrl) {
+  return m('button[class="save"]', {onclick: ctrl.save}, "Save")
+
 
 }
 
