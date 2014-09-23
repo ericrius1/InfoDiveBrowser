@@ -44,6 +44,14 @@ world.load = function(url) {
   })
 }
 
+world.save = function(url) {
+  return m.request({
+    method: 'PUT',
+    url: url,
+    data: G.data
+  })
+}
+
 world.controller = function() {
   this.id = m.route.param('worldID');
   this.data = world.load('/api/world/' + this.id);
@@ -51,8 +59,9 @@ world.controller = function() {
     G.createScene(data);
   });
   this.save = function(){
-    G.saveScene();
-  }
+    console.log('save!')
+    world.save('/api/world/' + this.id)
+  }.bind(this)
 
 }
 

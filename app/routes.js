@@ -23,12 +23,12 @@ module.exports = function(app, db) {
     });
   });
 
-  app.put('api/world/:worldID', function(req, res){
-    worlds.findOne({
-      _id: mongojs.ObjectId(req.params.worldID)
-    }, function(err, world){
-      console.log('yar!!')
+  app.put('/api/world/:worldID', function(req, res){
+    console.log("data",req.body )
+    var data = req.body;
+    var worlds = db.collection('worlds');
+    worlds.update({_id: mongojs.ObjectId(req.body._id)},{primitives: data.primitives}, function(){
+      console.log('update')
     })
-  })
-
+  });
 }

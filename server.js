@@ -5,10 +5,14 @@ var express = require('express');
 var app = express();
 var mongodb = require('mongodb');
 var mongojs = require('mongojs');
+var bodyParser = require('body-parser');
 var THREE = require('three');
 var port = process.env.PORT || 8080
 app.use(express.static(__dirname + '/public'));
 
+//this will let us get the data from a POST
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 // var uri = 'mongodb://heroku_app29862006:72o7v0fsmoaro2ra30grr8n57n@ds039000.mongolab.com:39000/heroku_app29862006';
 var uri = 'infodive';
 var data = {

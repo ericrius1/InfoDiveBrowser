@@ -101,7 +101,6 @@ G.saveScene = function(){
 
 
 G.createScene = function(data) {
-
   G.data = data;
   //Go through our primitives and recreate them from json data
   _.each(data.primitives, function(primitive){
